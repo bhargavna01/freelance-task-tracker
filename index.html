@@ -788,6 +788,32 @@ function sendToGoogleSheet() {
         alert("Failed to send data.");
     });
 }
+function testConnection() {
+  const testPayload = {
+    date: "2023-01-01",
+    count1min: 1,
+    count2min: 2,
+    count3min: 3,
+    count5min: 4,
+    count7min: 5,
+    totalTasks: 15,
+    totalMinutes: 60,
+    totalHours: 1.0
+  };
+
+  // Use your actual deployment URL
+  const scriptURL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(testPayload),
+    headers: {"Content-Type": "application/json"}
+  })
+  .then(r => r.text())
+  .then(t => console.log("Response:", t))
+  .catch(e => console.error("Error:", e));
+}
+       
 </script>
 </body>
 </html>
